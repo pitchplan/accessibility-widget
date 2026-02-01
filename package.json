@@ -54,7 +54,7 @@
     "Web accessibility standards",
     "Universal web access solutions"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "type": "module",
   "main": "dist/main.min.js",
   "types": "dist/main.d.ts",
@@ -62,8 +62,16 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/main.min.js",
-    "./next": "./dist/next.js"
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.min.js",
+      "default": "./dist/main.min.js"
+    },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js",
+      "default": "./dist/next.js"
+    }
   },
   "repository": {
     "type": "git",
