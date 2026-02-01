@@ -54,13 +54,17 @@
     "Web accessibility standards",
     "Universal web access solutions"
   ],
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "main": "dist/main.min.js",
   "types": "dist/main.d.ts",
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": "./dist/main.min.js",
+    "./next": "./dist/next.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RosenGray/accessibilik.git"
@@ -70,7 +74,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --p ./tsconfig-build.json && vite build && npm run uglify && rm ./dist/main.js",
+    "build": "tsc --p ./tsconfig-build.json && vite build && npm run uglify && node scripts/add-use-client.cjs && rm ./dist/main.js",
+    "addUseClient": "node scripts/add-use-client.cjs",
     "buildUmd": "tsc --p ./tsconfig-build.json && vite build && npm run uglifyUmd && rm ./dist/accessibility-react-widget.umd.cjs",
     "uglify": "uglifyjs ./dist/main.js -o ./dist/main.min.js --compress --mangle",
     "uglifyUmd": "uglifyjs ./dist/accessibility-react-widget.umd.cjs -o ./dist/accessibilik.umd.min.cjs --compress --mangle",
