@@ -65,7 +65,10 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, "lib/main.ts"),
+      entry: {
+        main: resolve(__dirname, "lib/main.ts"),
+        next: resolve(__dirname, "lib/next.tsx"),
+      },
       formats: ["es"],
     },
     copyPublicDir: false,
@@ -74,6 +77,7 @@ export default defineConfig({
       output: {
         assetFileNames: "assets/[name][extname]",
         entryFileNames: "[name].js",
+        banner: '"use client";',
         globals: {
           react: "React",
           "react-dom": "ReactDOM",

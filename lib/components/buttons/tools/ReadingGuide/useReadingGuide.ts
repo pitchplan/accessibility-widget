@@ -5,6 +5,7 @@ const renderReadingGuide = (mouseY: number, height: string | 0) => {
   const readingGuideContainer = document.getElementById(
     READING_GUIDE_PORTAL_ID
   )!;
+  readingGuideContainer.style.display = "block";
 
   let readingGuideTop = document.getElementById("acc-readingGuide-top");
   if (!readingGuideTop) {
@@ -55,6 +56,10 @@ export const useReadingGuide = (
       };
     } else {
       const readingGuideTop = document.getElementById("acc-readingGuide-top");
+      const readingGuideContainer = document.getElementById(
+        READING_GUIDE_PORTAL_ID
+      )!;
+      readingGuideContainer.style.display = "none";
       if (readingGuideTop) {
         readingGuideTop.remove();
       }

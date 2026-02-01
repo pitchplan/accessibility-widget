@@ -38,6 +38,32 @@ export default function App() {
 }
 ```
 
+### Next.js (App Router)
+
+The widget runs only on the client and is compatible with Next.js App Router. The published bundle includes the `"use client"` directive, so you can import it directly in Server Components (e.g. `layout.tsx`); Next.js will treat it as a client boundary.
+
+```js
+// app/layout.tsx
+import Accessibilik from 'accessibility-react-widget';
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        {children}
+        <Accessibilik />
+      </body>
+    </html>
+  );
+}
+```
+
+Alternatively, use the dedicated Next.js entry for an explicit client-only import:
+
+```js
+import Accessibilik from 'accessibility-react-widget/next';
+```
+
 ## 🔥 Features
 
 ## Content

@@ -19,8 +19,12 @@ export const isRuleAppliedToElement = (
   `data:image/svg+xml;base64,${window.btoa(svg)}`;
 
   export const getAccInitState  = ():AccessibilikState => {
+    const language =
+      typeof window !== "undefined"
+        ? localStorage.getItem("i18nextLng") ?? i18n.language
+        : i18n.language;
     return {
-      language: localStorage.getItem('i18nextLng') ?? i18n.language,
+      language,
       isBlueLightFilter:false,
       brightness:{isBrightness:false,brightness:150},
       isDarkContrast:false,

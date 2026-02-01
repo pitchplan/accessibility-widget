@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import { useSessionStorage } from "@uidotdev/usehooks";
 import { produce } from "immer";
 import styles from "./accessibilik.module.scss";
 import AccessibilityButton from "../buttons/AccessibilityButton/AccessibilityButton";
@@ -11,7 +10,7 @@ import { APP_ID, PORTAL_APP_ID } from "../../constants";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Portal from "../Portal/Portal";
 import i18n from "i18next";
-import { AccessibilikState, ChangeAccDraftHander } from "../../types";
+import { ChangeAccDraftHander } from "../../types";
 import { getAccInitState, registerDomain } from "../../utils";
 import { initReactI18next } from "react-i18next";
 import {
@@ -23,9 +22,9 @@ import {
 } from "./../../i18/locale";
 import en from "../../i18/locale/en.json";
 import usePersistenceLayout from "../../hooks/usePersistenceLayout/usePersistenceLayout";
+import useAccSessionState from "../../hooks/useAccSessionState";
 
 i18n.use(LanguageDetector).use(initReactI18next);
-const ACC_LOCAL_STORAGE_KEY = "accessibilik";
 const READING_GUIDE_PORTAL_ID = "acc-portal-[readingGuide-container]";
 
 const Accessibilik: FC = () => {
@@ -33,10 +32,7 @@ const Accessibilik: FC = () => {
   const [hasLanguages, setHasLanguages] = useState(false);
   const isTraversing = useFontSizeTraverse();
   const nodeListUpdated = useFontSizeMutationObserver();
-  const [accState, setAccState] = useSessionStorage<AccessibilikState>(
-    ACC_LOCAL_STORAGE_KEY,
-    getAccInitState()
-  );
+  const [accState, setAccState] = useAccSessionState();
   const [showAcc, setShowAcc] = useState(false);
   const isGettingReady = isTraversing || isLoading;
   usePersistenceLayout({ accState, isGettingReady, nodeListUpdated });
