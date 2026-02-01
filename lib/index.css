@@ -16,6 +16,10 @@
     z-index: 1000000;
 }
 
+#acc-portal-\[readingGuide-container\]{
+    display: none;
+}
+
 /* @font-face {
     font-family: 'OpenDyslexic';
     src: url('OpenDyslexic-Bold.woff') format('woff');
