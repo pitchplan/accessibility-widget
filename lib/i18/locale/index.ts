@@ -1,4 +1,5 @@
-export const baseUrl = 'https://acc-landing.vercel.app/locale/';
+export const baseUrl = 'https://rosengray.github.io/static/locale/';
+//export const baseUrl = 'https://acc-landing.vercel.app/locale/';
 
 export const loadJson = async (url:string) => {
   const response = await fetch(url);
