@@ -1,0 +1,6 @@
+.accProfiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 4px 8px 8px;
+}

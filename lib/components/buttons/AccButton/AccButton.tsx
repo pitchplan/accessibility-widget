@@ -77,7 +77,10 @@ const AccButton: FC<AccButtonProps> = ({
   return (
     <DynamicButton
       elementType={elementType}
-      onClick={onToggle}
+      onClick={(e: React.MouseEvent<HTMLElement>) => {
+        onToggle?.();
+        setTimeout(() => (e.target as HTMLElement)?.blur?.(), 300);
+      }}
       className={containerClass}
     >
       {stats && <span className={styles.accButton__stats}>{stats}</span>}

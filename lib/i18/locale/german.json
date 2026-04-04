@@ -1,0 +1,53 @@
+{
+    "accessibility-menu": "Barrierefreiheitsmenü",
+    "content": {
+        "title": "Inhaltsanpassung",
+        "adjustFontSize": "Schriftgröße anpassen",
+        "dyslexiaFont": "Dyslexie-Schriftart",
+        "fontWeight": "Schriftstärke",
+        "textAlignLeft": "Text linksbündig ausrichten",
+        "textAlignCenter": "Text zentriert ausrichten",
+        "textAlignRight": "Text rechtsbündig ausrichten",
+        "highlightLinks": "Links hervorheben",
+        "highlightTitles": "Titel hervorheben",
+        "letterSpacing": "Buchstabenabstand",
+        "wordsSpacing": "Wortabstand",
+        "lineHeight": "Zeilenhöhe",
+        "zoom": "Zoom",
+        "readableFont": "Lesbare Schrift",
+        "paragraphSpacing": "Absatzabstand"
+    },
+    "colors": {
+        "title": "Farbanpassung",
+        "blueLightFilter": "Blaulichtfilter",
+        "brightnessControl": "Helligkeitskontrolle",
+        "darkContrast": "Dunkler Kontrast",
+        "highContrast": "Hoher Kontrast",
+        "highSaturation": "Hohe Sättigung",
+        "lightContrast": "Heller Kontrast",
+        "lowSaturation": "Niedrige Sättigung",
+        "monochrom": "Monochrom",
+        "textColorPicker": "Textfarben-Auswahl",
+        "visualImpairment": "Sehbehinderung"
+    },
+    "tools": {
+        "title": "Werkzeuge",
+        "bigCursor": "Großer Cursor",
+        "readingGuide": "Lesehilfe",
+        "textToSpeach": "Text-zu-Sprache",
+        "textToSpeachTooltip": "Um 'Text-zu-Sprache' zu aktivieren, klicken Sie bitte auf diesen Button, wählen Sie dann Ihre bevorzugte Sprache aus und heben Sie den Text in dieser Sprache hervor.",
+        "stopAnimations": "Animationen stoppen",
+        "reduceMotion": "Bewegung reduzieren",
+        "hideImages": "Bilder ausblenden",
+        "muteSounds": "Töne stumm schalten",
+        "focusIndicator": "Fokusanzeige"
+    },
+    "profiles": {
+        "title": "Barrierefreiheitsprofile",
+        "seizureSafe": "Anfallsicher",
+        "adhdFriendly": "ADHS-freundlich",
+        "blindFriendly": "Blindenfreundlich",
+        "motorFriendly": "Motorikfreundlich",
+        "cognitive": "Kognitiv"
+    }
+}

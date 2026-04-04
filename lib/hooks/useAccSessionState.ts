@@ -19,11 +19,10 @@ export default function useAccSessionState(): [
     if (typeof window === "undefined") return;
     try {
       const raw = sessionStorage.getItem(ACC_SESSION_STORAGE_KEY);
-      console.log('raw',raw)
       if (raw) {
-        const parsed = JSON.parse(raw) as AccessibilikState;
-        console.log('parsed',parsed)
-        setAccState(parsed);
+        const parsed = JSON.parse(raw);
+        // Merge with defaults so new fields always have values
+        setAccState((defaults) => ({ ...defaults, ...parsed }));
       }
     } catch {
       // ignore invalid stored state

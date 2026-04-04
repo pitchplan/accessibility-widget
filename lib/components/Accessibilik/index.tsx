@@ -9,22 +9,22 @@ import "../../index.css";
 import { APP_ID, PORTAL_APP_ID } from "../../constants";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Portal from "../Portal/Portal";
-import i18n from "i18next";
+import i18next from "i18next";
 import { ChangeAccDraftHander } from "../../types";
-import { getAccInitState, registerDomain } from "../../utils";
-import { initReactI18next } from "react-i18next";
+import { getAccInitState } from "../../utils";
+import { I18nextProvider, initReactI18next } from "react-i18next";
 import {
-  Resources,
-  getLanguagePromises,
-  languageArray,
+  getLocalResources,
   languages,
   rtlLanguages,
 } from "./../../i18/locale";
-import en from "../../i18/locale/en.json";
 import usePersistenceLayout from "../../hooks/usePersistenceLayout/usePersistenceLayout";
 import useAccSessionState from "../../hooks/useAccSessionState";
 
-i18n.use(LanguageDetector).use(initReactI18next);
+// Dedicated i18n instance — avoids conflicts with the host app's i18n.
+const accI18n = i18next.createInstance();
+accI18n.use(LanguageDetector).use(initReactI18next);
+
 const READING_GUIDE_PORTAL_ID = "acc-portal-[readingGuide-container]";
 
 const Accessibilik: FC = () => {
@@ -34,12 +34,13 @@ const Accessibilik: FC = () => {
   const nodeListUpdated = useFontSizeMutationObserver();
   const [accState, setAccState] = useAccSessionState();
   const [showAcc, setShowAcc] = useState(false);
+  const [position, setPosition] = useState<"left" | "right">("left");
   const isGettingReady = isTraversing || isLoading;
   usePersistenceLayout({ accState, isGettingReady, nodeListUpdated });
   const direction = rtlLanguages.includes(accState.language) ? "rtl" : "ltr";
 
   const changeLanguageHandler = (langCode: string) => {
-    i18n.changeLanguage(langCode, () => {
+    accI18n.changeLanguage(langCode, () => {
       setAccState((p) => {
         return produce(p, (draft) => {
           draft.language = langCode;
@@ -61,44 +62,22 @@ const Accessibilik: FC = () => {
   };
 
   useEffect(() => {
-    const promises = getLanguagePromises();
-    const resources: Resources = {};
-    Promise.all(promises)
-      .then((langs) => {
-        languageArray.forEach((item, index) => {
-          resources[item.lang] = {
-            translation: langs[index],
-          };
-        });
-        i18n.init({
-          // debug: true,
-          fallbackLng: "he-IL",
-          resources,
-        });
-        i18n.languages = languages;
-        setHasLanguages(true);
-      })
-      .catch(() => {
-        i18n.init({
-          fallbackLng: "en",
-          resources: {
-            en: {
-              translation: en,
-            },
-          },
-        });
-      })
-      .finally(() => {
-        setIsLoading(false);
-        registerDomain();
-      });
+    // All 38 languages are bundled locally — no network requests needed.
+    const resources = getLocalResources();
+    accI18n.init({
+      fallbackLng: "he-IL",
+      resources,
+    });
+    accI18n.languages = languages;
+    setHasLanguages(true);
+    setIsLoading(false);
   }, []);
 
   if (isGettingReady)
     return <AccessibilityButton showSpinner={isGettingReady} />;
 
   return (
-    <>
+    <I18nextProvider i18n={accI18n}>
       <Portal wrapperElementId={READING_GUIDE_PORTAL_ID}>.</Portal>
       <Portal wrapperElementId={PORTAL_APP_ID}>
         <div
@@ -107,7 +86,7 @@ const Accessibilik: FC = () => {
           className={styles.Accessibilik}
           data-acc-language={accState.language}
         >
-          <AccessibilityButton onShow={renderAccHandler} />
+          <AccessibilityButton onShow={renderAccHandler} position={position} />
 
           <AccessibilityMenu
             display={showAcc ? "block" : "none"}
@@ -118,10 +97,12 @@ const Accessibilik: FC = () => {
             onInit={initAccessibilikStateHandler}
             onShow={renderAccHandler}
             hasLanguages={hasLanguages}
+            position={position}
+            onPositionChange={setPosition}
           />
         </div>
       </Portal>
-    </>
+    </I18nextProvider>
   );
 };
 

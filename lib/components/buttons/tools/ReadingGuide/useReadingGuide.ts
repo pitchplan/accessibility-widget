@@ -1,74 +1,81 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useCallback } from "react";
+
 const READING_GUIDE_PORTAL_ID = "acc-portal-[readingGuide-container]";
-
-const renderReadingGuide = (mouseY: number, height: string | 0) => {
-  const readingGuideContainer = document.getElementById(
-    READING_GUIDE_PORTAL_ID
-  )!;
-  readingGuideContainer.style.display = "block";
-
-  let readingGuideTop = document.getElementById("acc-readingGuide-top");
-  if (!readingGuideTop) {
-    readingGuideTop = document.createElement("div");
-    readingGuideTop.id = "acc-readingGuide-top";
-    readingGuideTop.className = "acc-readingGuide";
-    readingGuideTop.style.height = `${mouseY}px`;
-    readingGuideContainer.appendChild(readingGuideTop);
-  }
-  readingGuideTop.style.height = `${mouseY}px`;
-
-  let readingGuideBottom = document.getElementById("acc-readingGuide-bottom");
-  if (!readingGuideBottom) {
-    readingGuideBottom = document.createElement("div");
-    readingGuideBottom.id = "acc-readingGuide-bottom";
-    readingGuideBottom.className = "acc-readingGuide";
-    readingGuideBottom.style.top = "auto";
-    readingGuideBottom.style.bottom = "0";
-    readingGuideBottom.style.height = `${height}`;
-    readingGuideContainer.appendChild(readingGuideBottom);
-  }
-  readingGuideBottom.style.height = `${height}`;
-};
 
 export const useReadingGuide = (
   showReadingGuide: boolean,
-  rgGap: number,
+  gap: number,
   isGettingReady?: boolean
 ) => {
-  const [mouseY, setMouseY] = useState(0);
-  const height = useMemo(() => {
-    if (mouseY > 0) {
-      return `calc(100vh - ${mouseY}px - ${rgGap}px)`;
+  const topEl = useRef<HTMLDivElement | null>(null);
+  const bottomEl = useRef<HTMLDivElement | null>(null);
+  const lastY = useRef(0);
+  const frozenHeight = useRef(0);
+
+  const applyPosition = useCallback((y: number) => {
+    lastY.current = y;
+    if (!frozenHeight.current) frozenHeight.current = window.innerHeight;
+    const h = frozenHeight.current;
+    const halfGap = gap / 2;
+    if (topEl.current) topEl.current.style.height = `${Math.max(0, y - halfGap)}px`;
+    if (bottomEl.current) bottomEl.current.style.height = `${Math.max(0, h - y - halfGap)}px`;
+  }, [gap]);
+
+  // Re-apply when gap changes via +/- buttons
+  useEffect(() => {
+    if (showReadingGuide && lastY.current > 0) {
+      applyPosition(lastY.current);
     }
-    return 0;
-  }, [mouseY, rgGap]);
+  }, [gap, showReadingGuide, applyPosition]);
 
   useEffect(() => {
     if (isGettingReady) return;
+
     if (showReadingGuide) {
-      const handleMouseMove = (event: MouseEvent) => {
-        setMouseY(event.clientY);
+      const container = document.getElementById(READING_GUIDE_PORTAL_ID)!;
+      container.style.display = "block";
+      frozenHeight.current = window.innerHeight;
+
+      if (!topEl.current) {
+        const el = document.createElement("div");
+        el.id = "acc-readingGuide-top";
+        el.className = "acc-readingGuide";
+        container.appendChild(el);
+        topEl.current = el;
+      }
+      if (!bottomEl.current) {
+        const el = document.createElement("div");
+        el.id = "acc-readingGuide-bottom";
+        el.className = "acc-readingGuide";
+        el.style.top = "auto";
+        el.style.bottom = "0";
+        container.appendChild(el);
+        bottomEl.current = el;
+      }
+
+      // ── Desktop: follow mouse ──────────────────────────────────────────
+      const onMouse = (e: MouseEvent) => applyPosition(e.clientY);
+
+      // ── Mobile: follow touch position ──────────────────────────────────
+      const onTouchStart = (e: TouchEvent) => {
+        if (e.touches.length !== 1) return;
+        applyPosition(e.touches[0].clientY);
       };
-      renderReadingGuide(mouseY, height);
-      window.addEventListener("mousemove", handleMouseMove);
+
+      window.addEventListener("mousemove", onMouse);
+      window.addEventListener("touchstart", onTouchStart, { passive: true });
+
       return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mousemove", onMouse);
+        window.removeEventListener("touchstart", onTouchStart);
       };
     } else {
-      const readingGuideTop = document.getElementById("acc-readingGuide-top");
-      const readingGuideContainer = document.getElementById(
-        READING_GUIDE_PORTAL_ID
-      )!;
-      readingGuideContainer.style.display = "none";
-      if (readingGuideTop) {
-        readingGuideTop.remove();
-      }
-      const readingGuideBottom = document.getElementById(
-        "acc-readingGuide-bottom"
-      );
-      if (readingGuideBottom) {
-        readingGuideBottom.remove();
-      }
+      const container = document.getElementById(READING_GUIDE_PORTAL_ID);
+      if (container) container.style.display = "none";
+      if (topEl.current) { topEl.current.remove(); topEl.current = null; }
+      if (bottomEl.current) { bottomEl.current.remove(); bottomEl.current = null; }
+      lastY.current = 0;
+      frozenHeight.current = 0;
     }
-  }, [showReadingGuide, isGettingReady, mouseY, height]);
+  }, [showReadingGuide, isGettingReady, gap, applyPosition]);
 };

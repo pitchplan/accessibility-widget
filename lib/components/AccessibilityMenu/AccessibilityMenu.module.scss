@@ -9,17 +9,59 @@
   }
 }
 
+// ── Toolbar (language + position button) ─────────────────────────────────────
+.accToolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
+.acc-lang-select-container {
+  flex: 1;
+  min-width: 0;
+}
+
+.accPositionBtn {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0;
+  &:hover {
+    background: var(--primary-color);
+    svg {
+      fill: #fff;
+    }
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #2c2639;
+  }
+}
+
+// ── Main menu panel ──────────────────────────────────────────────────────────
 .accMenu {
   position: fixed;
-  inset-inline-start: 20px;
+  left: 20px;
+  right: auto;
   bottom: 100px;
+  max-height: calc(100vh - 120px);
   border-radius: 10px;
   box-shadow: 0 0 20px #00000080;
   opacity: 1;
   transition: 0.3s;
   z-index: 500000000000000000;
-  overflow: hidden;
-  background: #f9f9f9; // #e9eff4;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #f9f9f9;
   width: 100%;
   max-width: 500px;
   line-height: 1;
@@ -27,9 +69,15 @@
   letter-spacing: 0.015em;
   display: flex;
   flex-direction: column;
+  &.positionRight {
+    left: auto;
+    right: 20px;
+  }
+  // ── react-select overrides (consistent with widget style) ────────────────
   [class$="-control"] {
-    border-radius: 0;
-    border: 0.3px solid #2c2639;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-height: 42px;
   }
   [class$="-indicatorContainer"] {
     svg {
@@ -37,16 +85,25 @@
     }
   }
   [class$="-indicatorSeparator"] {
-    background-color: #2c2639;
+    background-color: #ccc;
   }
   [class$="-menu"] {
-    margin-top: 0;
-    z-index: 100;
+    margin-top: 2px;
+    z-index: 200;
+    border-radius: 4px;
+    border: 1px solid #ccc;
   }
   @media screen and (max-width: 540px) {
-    inset-inline-start: 0;
+    left: 0;
+    right: 0;
     max-width: 100%;
     top: 0;
+    bottom: 0;
+    max-height: 100vh;
     border-radius: 0;
+    &.positionRight {
+      left: 0;
+      right: 0;
+    }
   }
 }

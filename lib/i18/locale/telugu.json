@@ -1,0 +1,53 @@
+{
+    "accessibility-menu": "అందుబాటులోని మెను",
+    "content": {
+        "title": "కంటెంట్ సర్దుబాటు",
+        "adjustFontSize": "ఫాంట్ పరిమాణం సర్దుబాటు",
+        "dyslexiaFont": "డిస్లెక్సియా ఫాంట్",
+        "fontWeight": "ఫాంట్ బరువు",
+        "textAlignLeft": "ఎడమ వైపుకు టెక్స్ట్ అమర్చు",
+        "textAlignCenter": "మధ్యలో టెక్స్ట్ అమర్చు",
+        "textAlignRight": "కుడి వైపుకు టెక్స్ట్ అమర్చు",
+        "highlightLinks": "లింకులను హైలైట్ చేయి",
+        "highlightTitles": "శీర్షికలను హైలైట్ చేయి",
+        "letterSpacing": "అక్షరాల మధ్య దూరం",
+        "wordsSpacing": "పదాల మధ్య దూరం",
+        "lineHeight": "లైన్ ఎత్తు",
+        "zoom": "జూమ్",
+        "readableFont": "చదవగలిగే ఫాంట్",
+        "paragraphSpacing": "పేరా అంతరం"
+    },
+    "colors": {
+        "title": "రంగుల సర్దుబాటు",
+        "blueLightFilter": "నీలి కాంతి ఫిల్టర్",
+        "brightnessControl": "ప్రకాశం నియంత్రణ",
+        "darkContrast": "చీకటి వ్యతిరేకత",
+        "highContrast": "అధిక వ్యతిరేకత",
+        "highSaturation": "అధిక సంతృప్తి",
+        "lightContrast": "తేలికపాటి వ్యతిరేకత",
+        "lowSaturation": "తక్కువ సంతృప్తి",
+        "monochrom": "మోనోక్రోమ్",
+        "textColorPicker": "టెక్స్ట్ రంగు ఎంచుకోవడం",
+        "visualImpairment": "దృష్టి లోపం"
+    },
+    "tools": {
+        "title": "పరికరాలు",
+        "bigCursor": "పెద్ద కర్సర్",
+        "readingGuide": "చదువుటకు సూచన",
+        "textToSpeach": "టెక్స్ట్ నుండి ప్రసంగం",
+        "textToSpeachTooltip": "'టెక్స్ట్ నుండి ప్రసంగం' సక్రియం చేయడానికి, దయచేసి ఈ బటన్ పై క్లిక్ చేయండి, మీ ఇష్టమైన భాషను ఎంచుకోండి, ఆ భాషలో టెక్స్ట్ ను హైలైట్ చేయండి.",
+        "stopAnimations": "యానిమేషన్ ఆపు",
+        "reduceMotion": "చలనం తగ్గించు",
+        "hideImages": "చిత్రాలు దాచు",
+        "muteSounds": "ధ్వని నిశ్శబ్దం",
+        "focusIndicator": "ఫోకస్ సూచిక"
+    },
+    "profiles": {
+        "title": "యాక్సెసిబిలిటీ ప్రొఫైల్",
+        "seizureSafe": "మూర్ఛ సురక్షితం",
+        "adhdFriendly": "ADHD అనుకూలం",
+        "blindFriendly": "అంధత్వ అనుకూలం",
+        "motorFriendly": "మోటార్ అనుకూలం",
+        "cognitive": "అభిజ్ఞా"
+    }
+}

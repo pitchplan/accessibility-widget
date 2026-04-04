@@ -1,15 +1,57 @@
-export const baseUrl = 'https://rosengray.github.io/static/locale/';
-//export const baseUrl = 'https://acc-landing.vercel.app/locale/';
+/**
+ * Locale index — all 38 languages are bundled locally.
+ * No external network requests are made (GDPR-compliant).
+ */
 
-export const loadJson = async (url:string) => {
-  const response = await fetch(url);
-  return response.json();
-}
+// ── Local imports ───────────────────────────────────────────────────────────
+import hebrew from './hebrew.json';
+import english from './english.json';
+import russian from './russian.json';
+import chineseMandarin from './chineseMandarin.json';
+import spanish from './spanish.json';
+import arabic from './arabic.json';
+import bengali from './bengali.json';
+import hindi from './hindi.json';
+import portuguese from './portuguese.json';
+import japanese from './japanese.json';
+import german from './german.json';
+import chinese from './chinese.json';
+import korean from './korean.json';
+import french from './french.json';
+import turkish from './turkish.json';
+import vietnamese from './vietnamese.json';
+import telugu from './telugu.json';
+import marathi from './marathi.json';
+import tamil from './tamil.json';
+import italian from './italian.json';
+import urdu from './urdu.json';
+import gujarati from './gujarati.json';
+import polish from './polish.json';
+import ukrainian from './ukrainian.json';
+import persian from './persian.json';
+import malayalam from './malayalam.json';
+import kannada from './kannada.json';
+import oriya from './oriya.json';
+import romanian from './romanian.json';
+import azerbaijani from './azerbaijani.json';
+import hausa from './hausa.json';
+import burmese from './burmese.json';
+import serboCroatian from './serboCroatian.json';
+import thai from './thai.json';
+import dutch from './dutch.json';
+import yoruba from './yoruba.json';
+import sindhi from './sindhi.json';
+import latviski from './latviski.json';
+
+// ── Types ───────────────────────────────────────────────────────────────────
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TranslationData = Record<string, any>;
 export type Translation = {
-  translation:string;
-}
-export type Resources = Record<string,Translation>
+  translation: TranslationData;
+};
+export type Resources = Record<string, Translation>;
 
+// ── Language definitions ────────────────────────────────────────────────────
 export const languageArray = [
   { lang: 'he', name: 'hebrew' },
   { lang: 'en', name: 'english' },
@@ -48,61 +90,37 @@ export const languageArray = [
   { lang: 'nl', name: 'dutch' },
   { lang: 'yo', name: 'yoruba' },
   { lang: 'sd', name: 'sindhi' },
-  { lang: 'lv', name: 'latviski' }
+  { lang: 'lv', name: 'latviski' },
 ];
 
-export const getLanguagePromises = () => {
-  return languageArray.map(langObj => {
-    const url = `${baseUrl}${langObj.name}.json`;
-    return loadJson(url);
-  });
+// ── Map for direct access ───────────────────────────────────────────────────
+const translationMap: Record<string, TranslationData> = {
+  hebrew, english, russian, chineseMandarin, spanish, arabic, bengali, hindi,
+  portuguese, japanese, german, chinese, korean, french, turkish, vietnamese,
+  telugu, marathi, tamil, italian, urdu, gujarati, polish, ukrainian, persian,
+  malayalam, kannada, oriya, romanian, azerbaijani, hausa, burmese,
+  serboCroatian, thai, dutch, yoruba, sindhi, latviski,
+};
+
+// ── Build resources synchronously (no fetch) ────────────────────────────────
+export function getLocalResources(): Resources {
+  const resources: Resources = {};
+  for (const item of languageArray) {
+    resources[item.lang] = { translation: translationMap[item.name] };
+  }
+  return resources;
 }
 
+// ── Kept for backward compatibility but now returns resolved promises ───────
+export const getLanguagePromises = () => {
+  return languageArray.map(item => Promise.resolve(translationMap[item.name]));
+};
+
 export const languages = [
-  "en-US",
-  "he-IL",
-  "ru",
-  "zhcn",
-  "es",
-  "ar",
-  "bn",
-  "hi",
-  "ptpt",
-  "ja",
-  "de",
-  "wuu",
-  "ko",
-  "fr",
-  "tr",
-  "vi",
-  "te",
-  "yue",
-  "mr",
-  "ta",
-  "it",
-  "ur",
-  "gu",
-  "pl",
-  "uk",
-  "fa",
-  "ml",
-  "kn",
-  "or",
-  "ro",
-  "az",
-  "ha",
-  "my",
-  "sh",
-  "th",
-  "nl",
-  "yo",
-  "sd",
-  "lv",
+  "en-US", "he-IL", "ru", "zhcn", "es", "ar", "bn", "hi", "ptpt", "ja",
+  "de", "wuu", "ko", "fr", "tr", "vi", "te", "yue", "mr", "ta", "it",
+  "ur", "gu", "pl", "uk", "fa", "ml", "kn", "or", "ro", "az", "ha",
+  "my", "sh", "th", "nl", "yo", "sd", "lv",
 ];
 
-
-
 export const rtlLanguages = ["ar", "fa", "he", "he-IL", "ur"];
-
-
-

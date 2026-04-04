@@ -1,6 +1,7 @@
 MIT License
 
 Copyright (c) 2024 Vladi Iokhim
+Copyright (c) 2025 Daniel Dadashev / PitchPlan (https://www.pitch-plan.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -9,8 +9,13 @@
     0 2px 4px 0 rgb(93 100 148 / 20%);
   position: fixed;
   z-index: 500000000000000000;
-  inset-inline-start: 20px;
+  left: 20px;
+  right: auto;
   bottom: 20px;
+  &.positionRight {
+    left: auto;
+    right: 20px;
+  }
   transition: 0.3s;
   cursor: pointer;
   &.showSpinner {

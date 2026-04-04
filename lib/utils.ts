@@ -1,4 +1,3 @@
-import i18n from "i18next";
 import { AccessibilikState } from "./types";
 
 export const isRuleAppliedToElement = (
@@ -21,8 +20,8 @@ export const isRuleAppliedToElement = (
   export const getAccInitState  = ():AccessibilikState => {
     const language =
       typeof window !== "undefined"
-        ? localStorage.getItem("i18nextLng") ?? i18n.language
-        : i18n.language;
+        ? localStorage.getItem("i18nextLng") ?? "en-US"
+        : "en-US";
     return {
       language,
       isBlueLightFilter:false,
@@ -47,28 +46,17 @@ export const isRuleAppliedToElement = (
       zoom:{isZoom:false,zoom:1},
       isBigCursor:false,
       showReadingGuide:false,
-      activateTextToSpeech:false
+      readingGuideGap:100,
+      activateTextToSpeech:false,
+      speechRate:1,
+      isStopAnimations:false,
+      isReduceMotion:false,
+      isHideImages:false,
+      isMuteSounds:false,
+      isFocusIndicator:false,
+      isReadableFont:false,
+      paragraphSpacing:0,
     }
   }
 
-export const registerDomain = async () => {
-  try {
-    const data = {
-      domain: window.location.hostname,
-      created: new Date().toISOString(),
-    };
-
-    const response = await fetch("https://acc-landing.vercel.app/api/registerDomain", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const resData = await response.json();
-    console.log(resData);
-  } catch (err) {
-    //err
-  }
-};
+// Telemetry removed — no external requests are made (GDPR compliance).

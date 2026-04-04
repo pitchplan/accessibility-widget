@@ -11,6 +11,8 @@ import WordSpacingButton from "../buttons/content/WordSpacingButton/WordSpacingB
 import LineHeightButton from "../buttons/content/LineHeightButton/LineHeightButton";
 
 import ZoomButton from "../buttons/content/ZoomButton/ZoomButton";
+import ReadableFontButton from "../buttons/content/ReadableFontButton/ReadableFontButton";
+import ParagraphSpacingButton from "../buttons/content/ParagraphSpacingButton/ParagraphSpacingButton";
 
 interface AccContentProps {
   accState: AccessibilikState;
@@ -67,6 +69,14 @@ const AccContent: FC<AccContentProps> = ({ accState, onChangeAccState }) => {
         onChangeAccState={onChangeAccState}
       />
 
+      <ParagraphSpacingButton
+        accState={accState}
+        onChangeAccState={onChangeAccState}
+      />
+      <ReadableFontButton
+        accState={accState}
+        onChangeAccState={onChangeAccState}
+      />
       <ZoomButton accState={accState} onChangeAccState={onChangeAccState} />
     </>
   );

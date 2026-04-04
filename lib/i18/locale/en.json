@@ -13,7 +13,9 @@
         "letterSpacing": "Letter Spacing",
         "wordsSpacing": "Words Spacing",
         "lineHeight": "Line Height",
-        "zoom": "Zoom"
+        "zoom": "Zoom",
+        "readableFont": "Readable Font",
+        "paragraphSpacing": "Paragraph Spacing"
     },
     "colors": {
         "title": "Color adjustment",
@@ -33,6 +35,19 @@
         "bigCursor": "Big Cursor",
         "readingGuide": "Reading Guide",
         "textToSpeach": "Text To Speach",
-        "textToSpeachTooltip": "In order to activate 'Text To Speech', please click this button, after which you will have to select your preferred language, and then highlight the text in that language."
+        "textToSpeachTooltip": "In order to activate 'Text To Speech', please click this button, after which you will have to select your preferred language, and then highlight the text in that language.",
+        "stopAnimations": "Stop Animations",
+        "reduceMotion": "Reduce Motion",
+        "hideImages": "Hide Images",
+        "muteSounds": "Mute Sounds",
+        "focusIndicator": "Focus Indicator"
+    },
+    "profiles": {
+        "title": "Accessibility profiles",
+        "seizureSafe": "Seizure Safe",
+        "adhdFriendly": "ADHD Friendly",
+        "blindFriendly": "Blind Friendly",
+        "motorFriendly": "Motor Friendly",
+        "cognitive": "Cognitive"
     }
 }

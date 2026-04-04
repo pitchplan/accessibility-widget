@@ -1,0 +1,53 @@
+{
+    "accessibility-menu": "Pieejamības izvēlne",
+    "content": {
+        "title": "Satura pielāgošana",
+        "adjustFontSize": "Pielāgot fonta izmēru",
+        "dyslexiaFont": "Disleksijas fonts",
+        "fontWeight": "Fonta biezums",
+        "textAlignLeft": "Teksta līdzināšana pa kreisi",
+        "textAlignCenter": "Teksta centrēšana",
+        "textAlignRight": "Teksta līdzināšana pa labi",
+        "highlightLinks": "Izcelt saites",
+        "highlightTitles": "Izcelt virsrakstus",
+        "letterSpacing": "Atstarpe starp burtiem",
+        "wordsSpacing": "Atstarpe starp vārdiem",
+        "lineHeight": "Rindu augstums",
+        "zoom": "Tālummaiņa",
+        "readableFont": "Lasāms fonts",
+        "paragraphSpacing": "Rindkopu atstarpe"
+    },
+    "colors": {
+        "title": "Krāsu pielāgošana",
+        "blueLightFilter": "Zilās gaismas filtrs",
+        "brightnessControl": "Spilgtuma kontrole",
+        "darkContrast": "Tumšs kontrasts",
+        "highContrast": "Augsts kontrasts",
+        "highSaturation": "Augsta piesātinātība",
+        "lightContrast": "Gaišs kontrasts",
+        "lowSaturation": "Zema piesātinātība",
+        "monochrom": "Melnbalts",
+        "textColorPicker": "Teksta krāsas izvēle",
+        "visualImpairment": "Redzes traucējumi"
+    },
+    "tools": {
+        "title": "Rīki",
+        "bigCursor": "Liels kursors",
+        "readingGuide": "Lasīšanas ceļvedis",
+        "textToSpeach": "Teksta pārveidošana runā",
+        "textToSpeachTooltip": "Lai aktivizētu 'Teksta pārveidošanu runā', lūdzu, nospiediet šo pogu. Pēc tam izvēlieties vēlamo valodu un iezīmējiet tekstu šajā valodā.",
+        "stopAnimations": "Apturēt animācijas",
+        "reduceMotion": "Samazināt kustību",
+        "hideImages": "Slēpt attēlus",
+        "muteSounds": "Izslēgt skaņas",
+        "focusIndicator": "Fokusa indikators"
+    },
+    "profiles": {
+        "title": "Pieejamības profili",
+        "seizureSafe": "Drošs no lēkmēm",
+        "adhdFriendly": "ADHD draudzīgs",
+        "blindFriendly": "Neredzīgajiem draudzīgs",
+        "motorFriendly": "Kustību draudzīgs",
+        "cognitive": "Kognitīvs"
+    }
+}

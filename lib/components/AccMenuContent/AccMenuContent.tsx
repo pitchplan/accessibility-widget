@@ -19,14 +19,18 @@ const AccMenuContent: FC<AccMenuContentProps> = ({
   onCollapse,
   collapsedState,
 }) => {
-  const isAccMenuContentNotActive = Object.values(collapsedState).every(
-    ({ isExpanded }) => !isExpanded
-  );
-
   return (
     <div className={styled.accMenuContent}>
       <AccMenuContentBlock
-        isAccMenuContentActive={!isAccMenuContentNotActive}
+        onCollapse={onCollapse}
+        isExpanded={collapsedState.tools.isExpanded}
+        name={collapsedState.tools.name as CollapsedStateKeys}
+        Icon={collapsedState.tools.icon}
+        tKey="tools.title"
+      >
+        <AccTools accState={accState} onChangeAccState={onChangeAccState} />
+      </AccMenuContentBlock>
+      <AccMenuContentBlock
         onCollapse={onCollapse}
         isExpanded={collapsedState.content.isExpanded}
         name={collapsedState.content.name as CollapsedStateKeys}
@@ -36,7 +40,6 @@ const AccMenuContent: FC<AccMenuContentProps> = ({
         <AccContent accState={accState} onChangeAccState={onChangeAccState} />
       </AccMenuContentBlock>
       <AccMenuContentBlock
-        isAccMenuContentActive={!isAccMenuContentNotActive}
         onCollapse={onCollapse}
         isExpanded={collapsedState.colors.isExpanded}
         name={collapsedState.colors.name as CollapsedStateKeys}
@@ -44,16 +47,6 @@ const AccMenuContent: FC<AccMenuContentProps> = ({
         tKey="colors.title"
       >
         <AccColors accState={accState} onChangeAccState={onChangeAccState} />
-      </AccMenuContentBlock>
-      <AccMenuContentBlock
-        isAccMenuContentActive={!isAccMenuContentNotActive}
-        onCollapse={onCollapse}
-        isExpanded={collapsedState.tools.isExpanded}
-        name={collapsedState.tools.name as CollapsedStateKeys}
-        Icon={collapsedState.tools.icon}
-        tKey="tools.title"
-      >
-        <AccTools accState={accState} onChangeAccState={onChangeAccState} />
       </AccMenuContentBlock>
     </div>
   );

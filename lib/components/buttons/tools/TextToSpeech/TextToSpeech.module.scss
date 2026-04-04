@@ -1,33 +1,58 @@
-.accSelectVoicesContainer {
+// ── Speech rate control (inside the TTS button) ─────────────────────────
+.accSpeechRate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 2px 0;
+  margin-top: auto;
 
-  & :global(.accSelectVoices__indicators){
-    display: none;
+  &__btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none !important;
+    box-shadow: none !important;
+    svg {
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    &:active {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    // Kill ALL focus styling — no visual change after tap
+    &:focus,
+    &:focus-visible,
+    &:focus-within,
+    &:-webkit-any(:focus) {
+      outline: none !important;
+      box-shadow: none !important;
+      background: transparent;
+      border-color: currentColor;
+    }
   }
-  & :global(.accSelectVoices__option){
-    color:rgb(51, 51, 51);
+
+  &__label {
+    font-size: 13px;
+    font-weight: 700;
+    color: inherit;
+    min-width: 32px;
+    text-align: center;
   }
-  
 }
-
-
-
-
-// flex-direction: column;
-// [class$="-control"] {
-//   border-radius: 0;
-//   border:.3px solid #2C2639;
-// }
-// [class$="-indicatorContainer"] {
-//   svg{
-//     fill:#2C2639;
-//   }
-// }
-// [class$="-indicatorSeparator"] {
-//   background-color: #2C2639;
-// }
-// [class$="-menu"] {
-//   margin-top: 0;
-//   z-index: 100;
-// }
-// }
-

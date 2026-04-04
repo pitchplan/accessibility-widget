@@ -21,6 +21,14 @@ import { useBrightnessControl } from "../../components/buttons/colors/Brightness
 import { useHighSaturationButton } from "../../components/buttons/colors/HighSaturationButton/useHighSaturationButton";
 import { useLowSaturationButton } from "../../components/buttons/colors/LowSaturationButton/useLowSaturationButton";
 import { useTextColorPickerButton } from "../../components/buttons/colors/TextColorPickerButton/useTextColorPickerButton";
+import { useReadableFontButton } from "../../components/buttons/content/ReadableFontButton/useReadableFontButton";
+import { useParagraphSpacingButton } from "../../components/buttons/content/ParagraphSpacingButton/useParagraphSpacingButton";
+import { useStopAnimationsButton } from "../../components/buttons/tools/StopAnimationsButton/useStopAnimationsButton";
+import { useReduceMotionButton } from "../../components/buttons/tools/ReduceMotionButton/useReduceMotionButton";
+import { useHideImagesButton } from "../../components/buttons/tools/HideImagesButton/useHideImagesButton";
+import { useMuteSoundsButton } from "../../components/buttons/tools/MuteSoundsButton/useMuteSoundsButton";
+import { useFocusIndicatorButton } from "../../components/buttons/tools/FocusIndicatorButton/useFocusIndicatorButton";
+
 interface UsePersistenceLayoutProps {
   accState: AccessibilikState;
   isGettingReady: boolean;
@@ -47,7 +55,7 @@ const usePersistenceLayout = ({
   useWordSpacingButton(accState.wordSpacing, isGettingReady);
   useZoomButton(accState.zoom, isGettingReady);
   useBigCursorButton(accState.isBigCursor, isGettingReady);
-  useReadingGuide(accState.showReadingGuide, 100, isGettingReady);
+  useReadingGuide(accState.showReadingGuide, accState.readingGuideGap, isGettingReady);
   useBlueLightFilterButton(accState.isBlueLightFilter, isGettingReady);
   useDarkContrastButton(accState.isDarkContrast, isGettingReady);
   useLightContrastButton(accState.isLightContrast, isGettingReady);
@@ -74,6 +82,17 @@ const usePersistenceLayout = ({
     isGettingReady
   );
   useTextColorPickerButton(accState.color, isGettingReady);
+
+  // ── Content (new) ───────────────────────────────────────────────────────
+  useReadableFontButton(accState.isReadableFont, isGettingReady);
+  useParagraphSpacingButton(accState.paragraphSpacing, isGettingReady);
+
+  // ── Tools (new) ─────────────────────────────────────────────────────────
+  useStopAnimationsButton(accState.isStopAnimations, isGettingReady);
+  useReduceMotionButton(accState.isReduceMotion, isGettingReady);
+  useHideImagesButton(accState.isHideImages, isGettingReady);
+  useMuteSoundsButton(accState.isMuteSounds, isGettingReady);
+  useFocusIndicatorButton(accState.isFocusIndicator, isGettingReady);
 };
 
 export default usePersistenceLayout;

@@ -4,7 +4,7 @@ import styled from "./Footer.module.scss";
 const Footer: FC = () => {
   return (
     <footer className={styled.accFooter}>
-      <a target="_blank" href="https://www.linkedin.com/in/vladi-iokhim-26505714b/"> Developed By Vladi Iokhim &#169;</a>
+      <span>Originally by Vladi Iokhim | Enhanced by <a href="https://www.pitch-plan.com" target="_blank" rel="noopener noreferrer" style={{color: "inherit", textDecoration: "underline"}}>PitchPlan</a></span>
     </footer>
   );
 };
