@@ -1,7 +1,8 @@
 .AccessibilityIcon {
   background-color: var(--primary-color);
-  width: 70px;
-  height: 70px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,12 +25,12 @@
   }
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
   & > svg {
     fill: var(--white);
-    width: 75%;
+    width: 60%;
     z-index: 1;
   }
   &:after {
@@ -37,10 +38,10 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    bottom: 0;
     width: 80%;
     height: 80%;
     border: 2px solid white;
+    border-radius: 50%;
     background-color: var(--primary-color);
     z-index: 0;
     transform: translate(-50%, -50%);
